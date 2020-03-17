@@ -1,0 +1,24 @@
+Package: drought
+Type: Package
+Title: Drought Modeling and Assessment
+Version: 1.0.0
+Date: 2020-01-28
+Authors@R: 
+    person(given = "Ze",
+           family = "Jiang",
+           role = c("aut", "cre"),
+           email = "ze.jiang@unsw.edu.au",
+           comment = c(ORCID = "0002-3472-0829"))
+Maintainer: Ze Jiang<zejiangunsw@gmail.com>
+Description: The R-package for drought monitoring, prediction and analysis. 
+Depends: R (>= 3.1.0)
+Imports: stats,copula
+Suggests: 
+    MASS,
+    testthat
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.0.2
+NeedsCompilation: no
+
