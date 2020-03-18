@@ -4,12 +4,12 @@ An open-source R package for drought modelling and prediction
 
 ## Requirements
 <pre>
-Dependencies:\
-  stats,\
+Dependencies:
+  stats,
   coupla
 
-Suggest:\
-  MASS,\
+Suggest:
+  MASS,
   testthat
 </pre>
 
