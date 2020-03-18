@@ -46,12 +46,6 @@ drought <- function(X, start, end, theta){
     end[p] = as.character(dates[i])
   }
   
-  # if(sum(def==0)){ #sel = which(data<=theta) 
-      # ind=which(def==0)
-      # st=st[-ind];end=end[-ind];dur=dur[-ind];def=def[-ind];sev=sev[-ind]
-  # }
-  
-  #return(as.data.frame(cbind(st, end, dur, signif(-def, digits=4), signif(-sev, digits=4))))
   return(list(start=st, end=end, 
               dur=dur, 
               def=signif(-def, digits=4), 
