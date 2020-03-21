@@ -17,6 +17,8 @@ Pooling <- function(drought, IT=1, by="month"){
   def = drought$def
   maxint = drought$sev
   
+  if(is.na(st)) stop("no drought events")
+  
   start.date = as.Date(st,format="%Y-%m-%d")
   end.date = as.Date(end,format="%Y-%m-%d")
 
