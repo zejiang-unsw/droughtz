@@ -17,7 +17,7 @@ Pooling <- function(drought, IT=1, by="month"){
   def = drought$def
   maxint = drought$sev
   
-  if(is.na(st)) break("no drought events")
+  if(!is.na(st)){
   
   start.date = as.Date(st,format="%Y-%m-%d")
   end.date = as.Date(end,format="%Y-%m-%d")
@@ -82,6 +82,9 @@ Pooling <- function(drought, IT=1, by="month"){
                dur=dur.pooled[which(!is.na(st.pooled))], 
                def=def.pooled[which(!is.na(st.pooled))], 
                sev=maxint.pooled[which(!is.na(st.pooled))]))
+ } else {
+  return(drought)
+ }
 }
 
 #' Function: Remove minor droughts 
