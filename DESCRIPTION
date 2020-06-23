@@ -1,4 +1,4 @@
-Package: drought
+Package: droughtz
 Type: Package
 Title: Drought Modeling and Assessment
 Version: 1.0.0
@@ -19,6 +19,5 @@ Suggests:
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 NeedsCompilation: no
-

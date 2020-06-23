@@ -1,14 +1,17 @@
 #' Function: Compute the univariate empirical joint probability (EMP)
 #' 
 #' @param X The vector of a monthly hydro-climatic variable of n years.
-#' @param dist is the funciton for the plotting position formula (Gringorten or Weibull).
+#' @param dist is the function for the plotting position formula (Gringorten or Weibull).
 #' 
 #' @return The univariate EMP 
 #' @export
 #' 
 #' @examples
-#' X=runif(120, min = 0, max = 100)
+#' X=runif(100, min = 0, max = 100)
 #' fit<-UniEmp(X,dist = "Gringorten") 
+#' barplot(t(fit))
+#' plot(1/fit,X)
+
 UniEmp<-function (X,dist = "Gringorten")
 {
   

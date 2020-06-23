@@ -7,6 +7,8 @@
 #' @return Pooled droughts by combining drought events within interevent time period
 #' @export
 #'
+#' @references Van Loon, A. F. (2015). "Hydrological drought explained." Wiley Interdisciplinary Reviews: Water 2(4): 359-392.
+#'
 #' @examples
 #' 
 Pooling <- function(drought, IT=1, by="month"){

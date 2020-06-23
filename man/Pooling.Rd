@@ -22,3 +22,6 @@ Function: Pooling droughts
 \examples{
 
 }
+\references{
+Van Loon, A. F. (2015). "Hydrological drought explained." Wiley Interdisciplinary Reviews: Water 2(4): 359-392.
+}
