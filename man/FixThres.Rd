@@ -9,7 +9,7 @@ FixThres(data, percentile)
 \arguments{
 \item{data}{A vector of time series data}
 
-\item{percentile}{The percentile of FDC (exceedance)}
+\item{percentile}{The percentile of FDC (exceedance), range from (0,1)}
 }
 \value{
 

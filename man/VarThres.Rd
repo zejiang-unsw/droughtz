@@ -9,7 +9,7 @@ VarThres(data, percentile, dates, by = "month")
 \arguments{
 \item{data}{A vector of time series data}
 
-\item{percentile}{The percentile of FDC (exceedance)}
+\item{percentile}{The percentile of FDC (exceedance), range from (0,1)}
 
 \item{dates}{A vector of date variable}
 

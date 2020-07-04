@@ -2,7 +2,7 @@
 #' 
 #' @param X   the drought properties or indices
 #' @param Y   the drought properties or indices
-#' @param EL  the average reocurrence time, default EL=1 (annual maxima)
+#' @param EL  the average reoccurrence time, default EL=1 (annual maxima)
 #' 
 #' @return The univariate and multivariate return period
 #' @export

@@ -4,12 +4,12 @@
 \alias{UniEmp}
 \title{Function: Compute the univariate empirical joint probability (EMP)}
 \usage{
-UniEmp(X, dist = "Gringorten")
+UniEmp(X, dist = c("Weibull", "Gringorten"))
 }
 \arguments{
 \item{X}{The vector of a monthly hydro-climatic variable of n years.}
 
-\item{dist}{is the funciton for the plotting position formula (Gringorten or Weibull).}
+\item{dist}{The function for the plotting position formula (Gringorten or Weibull).}
 }
 \value{
 The univariate EMP
@@ -18,6 +18,8 @@ The univariate EMP
 Function: Compute the univariate empirical joint probability (EMP)
 }
 \examples{
-X=runif(120, min = 0, max = 100)
-fit<-UniEmp(X,dist = "Gringorten") 
+X=runif(100, min = 0, max = 100)
+P<-UniEmp(X,dist = "Gringorten") 
+barplot(t(P))
+plot(1/P,X)
 }

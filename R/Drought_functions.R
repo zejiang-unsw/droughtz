@@ -7,13 +7,13 @@
 #'
 #' @return
 #' @export
+#' @import zoo
 #' 
 #' @references Van Loon, A. F. (2015). "Hydrological drought explained." Wiley Interdisciplinary Reviews: Water 2(4): 359-392.
 #'
 #' @examples
 #' 
 drought <- function(X, start, end, theta){
-  #X <- data.SPI.obs[,Grids[1]]; start=c(1951,1);end=c(1970,12); theta=-1
 
   data = window(X, start=start, end = end)
   dates = as.Date(as.yearmon(time(data)))

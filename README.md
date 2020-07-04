@@ -1,4 +1,4 @@
-# drought
+# droughtz
 
 An open-source R package for drought modelling and prediction
 

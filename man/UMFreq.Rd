@@ -11,7 +11,7 @@ UMFreq(X, Y, EL = 1)
 
 \item{Y}{the drought properties or indices}
 
-\item{EL}{the average reocurrence time, default EL=1 (annual maxima)}
+\item{EL}{the average reoccurrence time, default EL=1 (annual maxima)}
 }
 \value{
 The univariate and multivariate return period

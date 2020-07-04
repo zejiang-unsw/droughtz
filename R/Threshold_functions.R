@@ -1,7 +1,7 @@
 #' Function: Compute fixed drought threshold
 #'
 #' @param data        A vector of time series data
-#' @param percentile  The percentile of FDC (exceedance)
+#' @param percentile  The percentile of FDC (exceedance), range from (0,1)
 #'
 #' @return
 #' @export
@@ -21,7 +21,7 @@ FixThres <- function(data, percentile){
 #' Function: Compute varying drought threshold
 #'
 #' @param data        A vector of time series data
-#' @param percentile  The percentile of FDC (exceedance)
+#' @param percentile  The percentile of FDC (exceedance), range from (0,1)
 #' @param dates       A vector of date variable
 #' @param by          Time step of the input data set
 #'

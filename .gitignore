@@ -37,3 +37,4 @@ vignettes/*.pdf
 
 /tests/
 /data-raw/
+inst/doc

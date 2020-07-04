@@ -1,0 +1,150 @@
+---
+title: "droughtz"
+output: bookdown::html_vignette2
+vignette: >
+  %\VignetteIndexEntry{droughtz}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      collapse = TRUE,
+                      comment = "#>",
+                      
+                      fig.path = 'figure/', 
+                      fig.align='center', 
+                      fig.pos = "H"
+                      )
+
+library(kableExtra)
+```
+
+```{r setup}
+library(droughtz)
+library(dplyr)
+```
+
+# Introduction
+
+
+## Study area and data
+```{r dat, out.width='50%'}
+#-------------------------------------------------------------------
+method <- switch(2, "Gringorten", "Weibull")
+
+viridis.col <- viridis::viridis(3)
+barplot(1:length(viridis.col), col=viridis.col)
+
+```
+
+
+## Drought Definition and Characteristics
+```{r fig, echo=TRUE, fig.cap='Drought Definition and Characteristics', fig.height=7, fig.width=9, out.width='100%'}
+#Synthetic example
+
+
+
+```
+
+## Example: Severity-Duration-Frequency
+```{r fig1, echo=TRUE, fig.cap=c('Synthetic generated SPI', 'Example of Severity-Duration-Frequency'), fig.height=c(6,6), fig.width=c(9,9), out.width='100%'}
+#-------------------------------------------------------------------
+### Example: Severity-Duration-Frequency
+#Synthetic example
+set.seed(2020)
+SPI <- rnorm(20*12)
+
+ind.d <- which(SPI<=-1); ind.w <- which(SPI>=1)
+cols <- rep("grey",length(SPI))
+cols[ind.d]<-viridis.col[1]; cols[ind.w]<-viridis.col[2]
+#barplot(SPI, col=cols, border = NA, space = 0, xaxt="n", ylab = "Drought Index (SPI12)")
+
+###calculate drought characteristics
+#compute threshold
+thres <- FixThres(SPI, percentile=0.8)
+
+SPI.ts <- ts(SPI, start=1, frequency = 12)
+drought <- drought(SPI.ts, start=start(SPI.ts), end= end(SPI.ts), theta=thres[[1]])
+#drought1<- Minor(drought,drought$dur,MIN=1); drought1$dur
+
+tab <- as.data.frame(table(drought$dur))
+colnames(tab) <- c("Drought Duration (D)", "No. of Events")
+kable(tab, caption = paste0("Drought duration and events"), booktabs = T,align="c") %>%
+kable_styling("striped",position = "center") %>%
+#add_header_above(c(" " = 1, "Calibration" = 3, "Validation" = 3)) %>%
+save_kable(paste0("figure/tab.png"),zoom = 1)
+
+knitr::include_graphics(paste0("figure/tab.png"))
+
+#-------------------------------------------------------------------
+#Duration 1 month
+Dur <- 1
+date <- as.character(zoo::as.Date(time(SPI.ts)))
+ind.D1 <- which(date %in% drought$start[drought$dur==Dur]); ind.D1
+cols[ind.D1] <- viridis.col[3]
+barplot(SPI, col=cols, border = NA, space = 0, xaxt="n", ylab = "Drought Index (SPI12)")
+
+#empirical probability
+X <- drought$def[drought$dur==Dur]
+P <- UniEmp(X, dist = method) # Probability
+RP <- 1/(1-P)                 # Exceedance return period
+
+# op <- par(mfrow=c(1,2))
+# plot(X,(1-P), xlab="Drought Severity (S)", ylab="Exceedence Probability (P)", main=paste0("Duration=",Dur," month"))
+# 
+# plot(RP,X, xlab="Return Period (T=1/P)", ylab="Drought Severity (S)", 
+#      main=paste0("Duration=",Dur," month"))
+# op
+
+#fitting and statistical test
+#---------------------------------------
+fit <- MASS::fitdistr(X,"weibull", lower = c(0, 0)); fit
+
+X.fit <- seq(0,2,length.out = 100)
+P.fit <- stats::pweibull(X.fit,shape=fit$estimate[1],scale=fit$estimate[2]) # Probability
+RP.fit <- 1/(1-P.fit)               # Exceedance return period
+
+op <- par(mfrow=c(1,2))
+plot(X.fit,(1-P.fit), type="l", xlab="Drought Severity (S)", ylab="Exceedence Probability (P)", main=paste0("Duration=",Dur," month"))
+points(X,(1-P), col="blue")
+
+plot(RP.fit,X.fit, type="l",xlab="Return Period (T=1/P)", ylab="Drought Severity (S)",
+     main=paste0("Duration=",Dur," month"))
+points(RP,X, col="blue")
+
+```
+
+```{r tab, out.width= '100%', warning=T}
+#interpolation and extrapolation
+P.hat <- c(0.5, 0.2, 0.1, 0.05, 0.02, 0.01)
+para.set <- cbind(fit$estimate, confint(fit))
+
+X.hat <- NULL
+for(i in 1:ncol(para.set)){
+  para <- para.set[,i]
+  X.hat <- cbind(X.hat, stats::qweibull(1-P.hat,shape=para[1],scale=para[2])) 
+}
+
+tab1 <- data.frame(RP=1/P.hat, Est=X.hat)
+colnames(tab1) <- c("Return Period", "Estimate", "95% Lower limit", "95% Upper limit")
+#tab
+
+kable(tab1, caption = paste0("Estimated Drought Severity (S) with different Return Period"), booktabs = T,align="c") %>%
+kable_styling("striped",position = "center") %>%
+#add_header_above(c(" " = 1, "Calibration" = 3, "Validation" = 3)) %>%
+save_kable(paste0("figure/tab1.png"),zoom = 1)
+
+knitr::include_graphics(paste0("figure/tab1.png"))
+
+```
+
+## Example: Severity-Area-Frequency
+```{r fig2, echo=TRUE, fig.cap='Example of Severity-Area-Frequency', fig.height=7, fig.width=9, out.width='100%'}
+#Synthetic example
+
+
+
+```

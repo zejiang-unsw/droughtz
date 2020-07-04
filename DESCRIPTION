@@ -9,15 +9,19 @@ Authors@R:
            role = c("aut", "cre"),
            email = "ze.jiang@unsw.edu.au",
            comment = c(ORCID = "0002-3472-0829"))
-Maintainer: Ze Jiang<zejiangunsw@gmail.com>
+Maintainer: Ze Jiang <ze.jiang@hotmail.com>
 Description: The R-package for drought monitoring, prediction and analysis. 
-Depends: R (>= 3.1.0)
-Imports: stats,copula
+Depends: R (>= 3.5.0)
+Imports: 
+    stats,
+    copula
 Suggests: 
     MASS,
+    knitr,
     testthat
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.0
 NeedsCompilation: no
+VignetteBuilder: knitr
