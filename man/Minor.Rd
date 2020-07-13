@@ -4,14 +4,14 @@
 \alias{Minor}
 \title{Function: Remove minor droughts}
 \usage{
-Minor(file, dur, MIN)
+Minor(drought, MIN)
 }
 \arguments{
-\item{file}{drought characteristics data variable}
-
-\item{dur}{drought duration variable}
+\item{drought}{drought characteristics data variable}
 
 \item{MIN}{minimum drought duration}
+
+\item{dur}{drought duration variable}
 }
 \value{
 A subset of droughts with duration larger than x days or months
