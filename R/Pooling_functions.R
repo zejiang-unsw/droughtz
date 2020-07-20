@@ -92,22 +92,21 @@ Pooling <- function(drought, IT=1, by="month"){
 #'
 #' @param drought drought characteristics data variable
 #' @param dur  drought duration variable
-#' @param MIN  minimum drought duration
+#' @param MIN  minimum drought duration, default 1. 
 #'
 #' @return A subset of droughts with duration larger than x days or months
 #' @export
 #'
 #' @examples
 #' 
-Minor <- function(drought, MIN){
+Minor <- function(drought, MIN=1){
   
-  dur=drought$dur  
-  if(!is.na(dur[1])){
-    droughts.sub <- lapply(drought, function(i) subset(i, dur > MIN)) 
-    return(droughts.sub)
-  } else {
-    return(drought)
+  dur=drought$dur
+  if(!is.na(dur[1])) drought <- lapply(drought, function(i) subset(i, dur > MIN))
+  for(i in 1:length(drought)){
+    if(length(drought[[i]])==0) drought[[i]]=NA 
   }
-
+  
+  return(drought)
 }
 

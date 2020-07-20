@@ -4,12 +4,12 @@
 \alias{Minor}
 \title{Function: Remove minor droughts}
 \usage{
-Minor(drought, MIN)
+Minor(drought, MIN = 1)
 }
 \arguments{
 \item{drought}{drought characteristics data variable}
 
-\item{MIN}{minimum drought duration}
+\item{MIN}{minimum drought duration, default 1.}
 
 \item{dur}{drought duration variable}
 }
